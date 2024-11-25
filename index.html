@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Classes Schedule</title>
+    <style>
+        .schedule-filter li {
+            display: inline-block;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .schedule-filter .active {
+            color: blue;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <!-- 문자 인코딩 설정 -->
+    <meta charset="utf-8">
+    <!-- 반응형 웹 디자인을 위한 뷰포트 설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 파비콘 설정 -->
+    <link rel="shortcut icon" href="images\favicon.ico">
+    <!-- 페이지 설명 및 저자 정보 -->
+    <meta name="description" content="">
+    <meta name="author" content="TPro">
+    <!-- 구글 폰트 Poppins 로드 -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        rel="stylesheet">
+    <!-- 페이지 제목 -->
+    <title>Training</title>
+    <!-- 부트스트랩 CSS 파일 연결 -->
+    <link rel="stylesheet" type="text/css" href="css\bootstrap.min.css">
+    <!-- Font Awesome CSS 파일 연결 -->
+    <link rel="stylesheet" type="text/css" href="css\font-awesome.css">
+    <!-- 사용자 정의 스타일 시트 연결 -->
+    <link rel="stylesheet" href="css\style.css">
+</head>
+
+<body>
+    <!-- 헤더 영역 시작 -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- 내비게이션 바 -->
+                    <nav class="main-nav">
+                        <!-- 사이트 로고 -->
+                        <a href="index.html" class="logo">healthy   <em>path</em></a>                 
+                        <ul class="nav" id="navMenu">
+                            <!-- 내비게이션 메뉴 항목 -->
+                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="#features">Guide</a></li>
+                            <li class="scroll-to-section"><a href="#our-classes">Recommend</a></li>
+                            <li class="scroll-to-section"><a href="#schedule">Schedules</a></li>
+                            <li class="scroll-to-section"><a href="#contact-us">Calculator</a></li>
+                            <li class="scroll-to-section"><a href="#trainers">Q&A</a></li>
+                            <!-- 로그인 버튼 (로그인 시 사용자 이름으로 변경됨) -->
+                            <li class="main-button" id="authButton"><a href="login.html">Log in</a></li>
+                        </ul>        
+                        <!-- 모바일 메뉴 트리거 -->
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- 헤더 영역 끝 -->
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner" id="top">
+        <!-- 배경 비디오 설정 -->
+        <video autoplay muted loop id="bg-video">
+            <source src="images/gym.mp4" type="video/mp4" />
+        </video>
+
+        <!-- 비디오 오버레이와 텍스트 -->
+        <div class="video-overlay header-text">
+            <div class="caption">
+                <!-- 슬로건 -->
+                <h6>Healtier today, stronger tomorrow</h6>
+                <!-- 배너 제목 -->
+                <h2>easy with our <em>Path</em></h2>
+                <!-- 회원가입 버튼 (로그인 시 숨김 처리) -->
+                <div class="main-button scroll-to-section" id="bannerButton">
+                    <a href="signup.html">Become a member</a>
+                </div>
+                <!-- 사용자 이름 표시 (로그인 시 활성화) -->
+                <div id="userWelcome" style="display: none;">
+                    <h6>Welcome, <span id="userName"></span>!</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <!-- JavaScript -->
+    <script>
+      // 사용자 로그인 상태 확인
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const loggedInUser = localStorage.getItem('loggedInUser');
+  
+      // DOM 요소 가져오기
+      const authButton = document.getElementById('authButton');
+      const bannerButton = document.getElementById('bannerButton');
+      const userWelcome = document.getElementById('userWelcome');
+      const userNameSpan = document.getElementById('userName');
+  
+      if (isLoggedIn && loggedInUser) {
+          // 로그인 상태라면
+          authButton.innerHTML = `<a href="#">${loggedInUser}</a>`; // 사용자 이름 표시
+          bannerButton.style.display = 'none'; // 회원가입 버튼 숨김
+          userWelcome.style.display = 'block'; // 사용자 환영 메시지 표시
+          userNameSpan.textContent = loggedInUser; // 사용자 이름 삽입
+          
+      } else {
+          // 로그아웃 상태라면
+          authButton.innerHTML = `<a href="login.html">Log in</a>`;
+      }
+  
+      // 로그아웃 기능 추가
+      authButton.addEventListener('click', (e) => {
+          if (isLoggedIn) {
+              e.preventDefault();
+              localStorage.setItem('isLoggedIn', false); // 로그아웃 처리
+              localStorage.removeItem('loggedInUser'); // 사용자 정보 삭제
+              window.location.reload(); // 페이지 새로고침
+          }
+      });
+  </script>
+  
+<!-- ***** Main Banner Area End ***** -->
+
+    <!-- ***** >Features Item Start ***** -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="row">
+                <!-- 섹션 제목 및 설명 -->
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-heading">
+                        <!-- 섹션 제목 -->
+                        <h2>Workout <em>Guide</em></h2>
+                        <!-- 장식 이미지 -->
+                        <img src="images/line-dec.png" alt="waves">
+                        <!-- 섹션 설명 텍스트 -->
+                        <p>다양한 운동 프로그램과 기술을 제공하여 사용자가 효과적으로 신체를 단련하고 건강을 유지할 수 있도록 해줍니다. 운동의 목적에 따라 다양한 운동 종류를 소개하고, 각
+                            운동의 올바른 자세와 수행 방법을 제공합니다.</p>
+                    </div>
+                </div>
+
+                <!-- 첫 번째 열: 피트니스 프로그램 목록 -->
+                <div class="col-lg-6">
+                    <ul class="features-items">
+                        <!-- 피트니스 항목 1 -->
+                        <li class="feature-item">
+                            <div class="left-icon">
+                                <img src="images/Chest.png" alt="First One">
+                            </div>
+                            <div class="right-content">
+                                <h4>가슴(Chest)</h4>
+                                <p>가슴 운동은 주로 가슴의 큰 근육인 대흉근을 강화하는 데 초점을 맞추며, 가슴을 부풀게 하고 상체의 균형을 잡는 데 중요합니다. 가슴 운동은 상체 전체의
+                                    힘을 증대시키며, 특히 팔과 어깨에도 영향을 미칩니다.</p>
+                                <!-- 자세히 알아보기 버튼 -->
+                                <a href="chest_exercise.html" class="text-button">설명 보러가기</a>
+                            </div>
+                        </li>
+                        <!-- 피트니스 항목 2 -->
+                        <li class="feature-item">
+                            <div class="left-icon">
+                                <img src="images/Shoulder.png" alt="second one">
+                            </div>
+                            <div class="right-content">
+                                <h4>어깨(Shoulders)</h4>
+                                <p>어깨 운동은 어깨의 삼각근을 자극하여 어깨를 넓고 튼튼하게 만드는 데 중요합니다. 어깨를 모두 자극하여 균형 잡힌 어깨를 만듭니다. 어깨 운동을 통해
+                                    상체의 넓이와 비율을 개선할 수 있습니다.</p>
+                                <a href="shoulder.html" class="text-button">설명 보러가기</a>
+                            </div>
+                        </li>
+                        <!-- 피트니스 항목 3 -->
+                        <li class="feature-item">
+                            <div class="left-icon">
+                                <img src="images/Leg.png" alt="third gym training">
+                            </div>
+                            <div class="right-content">
+                                <h4>하체(legs)</h4>
+                                <p>하체 운동은 대퇴사두근, 햄스트링, 엉덩이 근육 등을 강화하는 데 초점을 둡니다. 하체 근육은 신체에서 가장 큰 근육군에 속해 있기 때문에 운동을 통해
+                                    전반적인 근력과 체력 향상에 도움이 됩니다.</p>
+                                <a href="lower-body_exercise.html" class="text-button">설명 보러가기</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 두 번째 열: 추가 피트니스 프로그램 목록 -->
+                <div class="col-lg-6">
+                    <ul class="features-items">
+                        <!-- 피트니스 항목 4 -->
+                        <li class="feature-item">
+                            <div class="left-icon">
+                                <img src="images/Back.png" alt="fourth muscle">
+                            </div>
+                            <div class="right-content">
+                                <h4>등(back)</h4>
+                                <p>등 운동은 등 근육을 강화하고, 자세를 개선하며, 전반적인 체력을 향상시키는 데 중요한 역할을 합니다. 주요 등 근육은 광배근, 중부 등 근육, 그리고
+                                    하부 등 근육으로 나뉩니다. 각 부위에 맞는 운동을 통해 균형 잡힌 몸매를 만들 수 있습니다.</p>
+                                <a href="back_exercise.html" class="text-button">설명 보러가기</a>
+                            </div>
+                        </li>
+                        <!-- 피트니스 항목 5 -->
+                        <li class="feature-item">
+                            <div class="left-icon">
+                                <img src="images/Arms.png" alt="training fifth">
+                            </div>
+                            <div class="right-content">
+                                <h4>팔(Arms)</h4>
+                                <p>팔 운동은 주로 팔 앞쪽에 있는 이두근과 뒤쪽에 있는 삼두근을 강화하는 데 초점을 맞춥니다. 각 근육을 자극하는 다양한 운동을 통해 팔의 근력을 높이고,
+                                    팔뚝을 더 두껍고 강하게 만들 수 있습니다.</p>
+                                <a href="arm_exercise.html" class="text-button">설명 보러가기</a>
+                            </div>
+                        </li>
+                        <!-- 피트니스 항목 6 -->
+                        <li class="feature-item">
+                            <div class="left-icon">
+                                <img src="images/Running1.png" alt="training fifth">
+                            </div>
+                            <div class="right-content">
+                                <h4>유산소(Cardio Exercises)</h4>
+                                <p>유산소 운동은 심장과 폐의 기능을 강화하고, 체지방을 줄이며, 전반적인 체력을 높이는 데 도움을 줍니다. 대표적인 유산소 운동은 다음과 같습니다.</p>
+
+                                <a href="aerobic-exercise.html" class="text-button">설명 보러가기</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Item End ***** -->
+
+    <!-- ***** Call to Action Start ***** -->
+    <section class="section" id="call-to-action">
+        <div class="container">
+            <div class="row">
+                <!-- 중앙 정렬된 CTA 콘텐츠 -->
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cta-content">
+                        <!-- CTA 제목 -->
+                        <h2>Don't <em>think</em>, begin <em>today</em>!</h2>
+                        <!-- CTA 설명 텍스트 -->
+                        <p>작은 한 걸음이 큰 변화를 만들어냅니다.
+                            완벽할 필요는 없습니다. 꾸준함이 곧 열쇠입니다.
+                            저희와 함께라면 목표를 향한 여정이 더 즐겁고, 효과적일 거예요.
+                            지금 바로 시작해 건강하고 행복한 삶을 만들어가요 !</p>
+                        <!-- 회원가입 버튼 -->
+                        <div class="main-button scroll-to-section">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Call to Action End ***** -->
+
+
+    <!-- ***** Our Classes Start ***** -->
+    <section class="section" id="our-classes">
+        <div class="container">
+            <div class="row">
+                <!-- 섹션 제목 및 설명 -->
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-heading">
+                        <!-- 섹션 제목 -->
+                        <h2> Exercise <em>Daily</em> Recommend</h2>
+                        <!-- 장식 이미지 -->
+                        <img src="assets/images/line-dec.png" alt="">
+                        <!-- 섹션 설명 텍스트 -->
+                        <p>각 요일마다 목표와 주요 운동을 설정하여 체력과 근육 발달에 효과적으로 기여할 수 있도록 도와줍니다. 헬스 초보자부터 숙련자까지 누구나 쉽게 따라 할 수 있는 추천
+                            루틴으로 균형 잡힌 운동을 시작해 보세요.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="tabs">
+                <!-- 왼쪽 열: 클래스 탭 목록 -->
+                <div class="col-lg-4">
+                    <ul>
+                        <!-- 각 클래스에 대한 링크 -->
+                        <li><a href='#tabs-1'><img src="images/tabs-first-icon.png" alt="">Monday Training</a></li>
+                        <li><a href='#tabs-2'><img src="images/tabs-first-icon.png" alt="">Tuesday Training</a></li>
+                        <li><a href='#tabs-3'><img src="images/tabs-first-icon.png" alt="">Wednesday Training</a></li>
+                        <li><a href='#tabs-4'><img src="images/tabs-first-icon.png" alt="">Thursday Training</a></li>
+                        <li><a href='#tabs-5'><img src="images/tabs-first-icon.png" alt="">Friday Training</a></li>
+                        <li><a href='#tabs-6'><img src="images/tabs-first-icon.png" alt="">Saturday Training</a></li>
+                        <li><a href='#tabs-7'><img src="images/tabs-first-icon.png" alt="">Sunday Training</a></li>
+                    </ul>
+
+                </div>
+
+                <!-- 오른쪽 열: 선택된 클래스의 내용 -->
+                <div class="col-lg-8">
+                    <div class='tabs-content'>
+                        <!-- 첫 번째 클래스의 콘텐츠 -->
+                        <article id='tabs-1'>
+                            <h4>월요일 운동 추천</h4>
+                            <img src="images/class4.jpg" alt="First Class">
+
+                            <h4>새로운 한 주가 시작되었습니다! 오늘은 가슴 운동으로 상체의 힘과 균형을 강화하고, 삼두 운동으로 팔의 근력을 함께 향상시켜보세요.</h4>
+                            <h4>가슴 운동 추천</h4>
+                            <p>1. 벤치 프레스 (Bench Press)</p>
+
+                            <p>2. 케이블 크로스오버 (Cable Crossover)</p>
+
+
+                            <p>3. 푸쉬업 (Push-up)</p>
+                            <a href="chest_exercise.html" class="text-button">설명 보러가기</a>
+                            <h4>삼두 운동 추천</h4>
+
+                            <p>1. 트라이셉스 푸쉬다운 (Triceps Pushdown)</p>
+
+                            <p>2. 덤벨 킥백 (Dumbbell Kickback)</p>
+
+                            <p>3. 클로즈 그립 벤치 프레스 (Close-Grip Bench Press)</p>
+                            <a href="arm_exercise.html" class="text-button">설명 보러가기</a>
+                        </article>
+
+                        <!-- 두 번째 클래스의 콘텐츠 -->
+                        <article id='tabs-2'>
+
+                            <h4>화요일 운동 추천</h4>
+                            <img src="images/class3.jpg" alt="First Class">
+
+                            <h4>화요일, 상체의 조화를 위해 등과 이두 운동에 집중해봅시다! 등 운동으로 상체의 후면을 강화하고, 이두 운동으로 팔의 근력을 높여보세요.</h4>
+                            <h4>등운동 추천</h4>
+                            <p>1. 랫풀다운 (Lat Pulldown)</p>
+
+                            <p>2.로우 머신 (Row Machine)</p>
+
+
+                            <p>3. 풀업 (Pull-up)</p>
+                            <a href="back_exercise.html" class="text-button">설명 보러가기</a>
+                            <h4>이두 운동 추천</h4>
+
+                            <p>1. 바벨 컬 (Barbell Curl)</p>
+
+                            <p>2. 덤벨 컬 (Dumbbell Curl)</p>
+
+                            <p>3. 해머 컬 (Hammer Curl)</p>
+                            <a href="arm_exercise.html" class="text-button">설명 보러가기</a>
+                        </article>
+
+                        <!-- 세 번째 클래스의 콘텐츠 -->
+                        <article id='tabs-3'>
+                            <h4>수요일 운동 추천</h4>
+                            <img src="images/training-image-01.jpg" alt="First Class">
+
+                            <h4>주 중반! 오늘은 하체와 어깨 운동에 집중해봅시다. 하체를 탄탄하게 단련하면 전체적인 체력과 균형이 크게 향상됩니다. </h4>
+                            <h4>하체 운동 추천</h4>
+                            <p>1. 레그 프레스 (Leg Press)</p>
+
+                            <p>2. 스쿼트 (Squat)</p>
+
+
+                            <p>3. 런지 (Lunge)</p>
+                            <a href="lower-body_exercise.html" class="text-button">설명 보러가기</a>
+
+                            <h4>어깨 운동 추천</h4>
+
+                            <p>1. 밀리터리 프레스 (Military Press)</p>
+
+                            <p>2. 리버스 플라이 (Reverse Fly)</p>
+
+                            <p>3. 숄더 슈러그 (Shoulder Shrugs)</p>
+                            <a href="shoulder.html" class="text-button">설명 보러가기</a>
+                        </article>
+
+                        <!-- 네 번째 클래스의 콘텐츠 -->
+                        <article id='tabs-4'>
+                            <h4>목요일 운동 추천</h4>
+                            <img src="images/class5.jpg" alt="First Class">
+
+                            <h4>목요일은 웨이트 운동을 잠시 쉬고, 유산소 운동에 집중하는 날입니다. 유산소 운동을 통해 심폐 기능과 체력을 향상시켜 보세요. </h4>
+                            <h4>유산소 운동 추천</h4>
+                            <p>1. 버피 (Burpees)</p>
+
+                            <p>2. HIIT (고강도 인터벌 트레이닝)</p>
+
+
+                            <p>3. 마운틴 클라이머 (Mountain Climbers)</p>
+                            <a href="aerobic-exercise.html" class="text-button">설명 보러가기</a>
+
+                        </article>
+                        <!-- 다섯 번째 클래스의 콘텐츠 -->
+                        <article id='tabs-5'>
+                            <h4>금요일 운동 추천</h4>
+                            <img src="images/class6.jpg" alt="First Class">
+
+                            <h4>주말이 다가왔습니다! 오늘은 다시 가슴과 삼두 운동에 집중하며 한 주를 마무리하는 준비를 해볼까요?</h4>
+                            <h4>가슴 운동 추천</h4>
+                            <p>1. 벤치 프레스 (Bench Press)</p>
+
+                            <p>2. 덤벨 플라이 (Dumbbell Fly)</p>
+
+
+                            <p>3. 인클라인 벤치 프레스 (Incline Bench Press)</p>
+                            <a href="chest_exercise.html" class="text-button">설명 보러가기</a>
+                            <h4>삼두 운동 추천</h4>
+
+                            <p>1. 트라이셉스 푸쉬다운 (Triceps Pushdown)</p>
+
+                            <p>2. 트라이셉스 익스텐션 (Triceps Extension)</p>
+
+                            <p>3. 벤치 딥스 (Bench Dips)</p>
+                            <a href="arm_exercise.html" class="text-button">설명 보러가기</a>
+                        </article>
+                        <!-- 여섯 번째 클래스의 콘텐츠 -->
+                        <article id='tabs-6'>
+                            <h4>토요일 운동 추천</h4>
+                            <img src="images/class8.jpg" alt="First Class">
+
+                            <h4>오늘은 등과 이두를 중점으로 상체의 뒷라인을 한층 더 강화해 보세요! 한 주의 운동 성과를 돌아볼 수 있는 날입니다.</h4>
+                            <h4>등 운동 추천</h4>
+                            <p>1. 데드리프트 (Deadlift)</p>
+
+                            <p>2. 바벨 로우 (Barbell Row)</p>
+
+
+                            <p>3. T-바 로우 (T-Bar Row)</p>
+                            <a href="back_exercise.html" class="text-button">설명 보러가기</a>
+                            <h4>이두 운동 추천</h4>
+
+                            <p>1. 프리처 컬 (Preacher Curl)</p>
+
+                            <p>2. 케이블 컬 (Cable Curl)</p>
+
+                            <p>3. 바벨 컬 (Barbell Curl)</p>
+                            <a href="arm_exercise.html" class="text-button">설명 보러가기</a>
+                        </article>
+                        <!-- 일곱 번째 클래스의 콘텐츠 -->
+                        <article id='tabs-7'>
+                            <h4>일요일 운동 추천</h4>
+                            <img src="images/class7.jpg" alt="First Class">
+
+                            <h4>오늘은 하체와 어깨 운동! 일주일간의 노력의 마무리이자 다음 주를 준비하는 날이므로 자신에게 집중해봅시다.</h4>
+                            <h4>하체 운동 추천</h4>
+                            <p>1. 스쿼트 (Squat)</p>
+
+                            <p>2. 스텝업 (Step-up)</p>
+
+
+                            <p>3. 카프 레이즈 (Calf Raise)</p>
+                            <a href="lower-body_exercise.html" class="text-button">설명 보러가기</a>
+                            <h4>어깨 운동 추천</h4>
+
+                            <p>1. 덤벨 숄더 프레스 (Dumbbell Shoulder Press)</p>
+
+                            <p>2. 레터럴 레이즈 (Lateral Raise)</p>
+
+                            <p>3. 프론트 레이즈 (Front Raise)</p>
+                            <a href="shoulder.html" class="text-button">설명 보러가기</a>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Our Classes End ***** -->
+    <!-- ***** Schedule Start ***** -->
+    <section class="section" id="schedule">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-heading dark-bg">
+                        <h2>식단 <em>스케줄</em></h2>
+                        <img src="images/line-dec.png" alt="">
+                        <p>이 표는 다이어트 식단과 벌크업 식단을 요일별로 상세하게 보여줍니다.
+                            각 요일별로 아침, 점심, 저녁, 간식으로 구성되어 있어 하루 동안의 균형 잡힌 식단을 계획하고 실천하는 데 도움을 줄 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="filters">
+                        <ul class="schedule-filter">
+                            <li class="active" onclick="filterSchedule('diet')">다이어트 식단</li>
+                            <li onclick="filterSchedule('bulk')">벌크업 식단</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="schedule-table filtering">
+                        <!-- 다이어트 식단 테이블 -->
+                        <table data-schedule="diet">
+                            <thead>
+                                <tr>
+                                    <th>요일</th>
+                                    <th>아침</th>
+                                    <th>점심</th>
+                                    <th>저녁</th>
+                                    <th>간식</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>월</td>
+                                    <td>시리얼 1그릇, 우유 200ml</td>
+                                    <td>일반식사(백반), 공기밥 1/2</td>
+                                    <td>브로콜리, 고구마 100g, 닭가슴살 1팩</td>
+                                    <td>원두커피 1잔</td>
+                                </tr>
+                                <tr>
+                                    <td>화</td>
+                                    <td>오트밀 1그릇, 바나나 1개</td>
+                                    <td>현미밥, 생선구이, 나물</td>
+                                    <td>삶은 계란 2개, 샐러드</td>
+                                    <td>아몬드 10개</td>
+                                </tr>
+                                <tr>
+                                    <td>수</td>
+                                    <td>그릭 요거트, 블루베리</td>
+                                    <td>두부 샐러드, 현미밥</td>
+                                    <td>찐 고구마, 닭가슴살</td>
+                                    <td>사과 1개</td>
+                                </tr>
+                                <tr>
+                                    <td>목</td>
+                                    <td>삶은 계란 2개, 방울토마토</td>
+                                    <td>채소볶음, 현미밥</td>
+                                    <td>고구마, 닭가슴살 샐러드</td>
+                                    <td>견과류</td>
+                                </tr>
+                                <tr>
+                                    <td>금</td>
+                                    <td>그릭 요거트, 아몬드</td>
+                                    <td>현미밥, 닭가슴살, 채소</td>
+                                    <td>찐 브로콜리, 고구마</td>
+                                    <td>사과 1개</td>
+                                </tr>
+                                <tr>
+                                    <td>토</td>
+                                    <td>오트밀 1그릇, 블루베리</td>
+                                    <td>두부, 채소, 현미밥</td>
+                                    <td>찐 고구마, 닭가슴살</td>
+                                    <td>바나나 1개</td>
+                                </tr>
+                                <tr>
+                                    <td>일</td>
+                                    <td>그릭 요거트, 블루베리</td>
+                                    <td>현미밥, 생선구이, 나물</td>
+                                    <td>찐 브로콜리, 삶은 달걀</td>
+                                    <td>아몬드 10개</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- 벌크업 식단 테이블 -->
+                        <table data-schedule="bulk" class="hidden">
+                            <thead>
+                                <tr>
+                                    <th>요일</th>
+                                    <th>아침</th>
+                                    <th>점심</th>
+                                    <th>저녁</th>
+                                    <th>간식</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>월</td>
+                                    <td>고구마 200g, 닭가슴살 1팩</td>
+                                    <td>닭가슴살 샐러드, 고구마 150g</td>
+                                    <td>현미밥, 스테이크</td>
+                                    <td>프로틴 쉐이크</td>
+                                </tr>
+                                <tr>
+                                    <td>화</td>
+                                    <td>삶은 계란 3개, 감자 200g</td>
+                                    <td>현미밥, 닭가슴살</td>
+                                    <td>고구마 150g, 생선구이</td>
+                                    <td>견과류, 요거트</td>
+                                </tr>
+                                <tr>
+                                    <td>수</td>
+                                    <td>삶은 계란 4개, 오트밀 1그릇</td>
+                                    <td>현미밥, 소고기 구이</td>
+                                    <td>감자 200g, 닭가슴살</td>
+                                    <td>프로틴 바</td>
+                                </tr>
+                                <tr>
+                                    <td>목</td>
+                                    <td>오트밀 1그릇, 바나나</td>
+                                    <td>현미밥, 연어 스테이크</td>
+                                    <td>닭가슴살, 감자 150g</td>
+                                    <td>요거트</td>
+                                </tr>
+                                <tr>
+                                    <td>금</td>
+                                    <td>삶은 계란 3개, 고구마 100g</td>
+                                    <td>현미밥, 소고기 볶음</td>
+                                    <td>스테이크, 감자 200g</td>
+                                    <td>프로틴 쉐이크</td>
+                                </tr>
+                                <tr>
+                                    <td>토</td>
+                                    <td>고구마 150g, 프로틴 쉐이크</td>
+                                    <td>현미밥, 닭가슴살 샐러드</td>
+                                    <td>스테이크, 감자 200g</td>
+                                    <td>견과류, 요거트</td>
+                                </tr>
+                                <tr>
+                                    <td>일</td>
+                                    <td>삶은 계란 3개, 바나나</td>
+                                    <td>현미밥, 소고기 구이</td>
+                                    <td>고구마 200g, 닭가슴살</td>
+                                    <td>프로틴 쉐이크</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Schedule End ***** -->
+
+
+    <!-- ***** Contact Us Area Starts ***** -->
+    <section class="section" id="contact-us">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1" style="margin-top: -150px;">
+                    <div class="section-heading text-center">
+                        <h2><em>Calorie</em> Calculator</h2>
+
+                        <img src="images/line-dec.png" alt="waves">
+                        <br>
+                        <p>건강한 라이프스타일을 위해, 저희 웹사이트에서는 칼로리 계산기를 제공합니다! <br>
+                            하루에 필요한 칼로리를 손쉽게 확인하고, 체중 관리나 건강 목표를 설정하는 데 도움을 받을 수 있습니다.</p>
+
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10 offset-lg-0 ">
+                    <div class="calculator" style="font-size: 1.2em; text-align: center;">
+                        <h2>대사량 측정기</h2>
+                        <label for="gender">성별:</label>
+                        <select id="gender">
+                            <option value="male">남성</option>
+                            <option value="female">여성</option>
+                        </select>
+                        <label for="age">나이:</label>
+                        <input type="number" id="age" min="0">
+
+                        <label for="weight">몸무게(kg):</label>
+                        <input type="number" id="weight" min="0">
+
+                        <label for="height">키(cm):</label>
+                        <input type="number" id="height" min="0">
+                        <br>
+
+                        <label for="activity">활동량:</label>
+                        <select id="activity">
+                            <option value="1.2">거의 안함</option>
+                            <option value="1.375">주에 1-2번</option>
+                            <option value="1.55">주에 3-4번</option>
+                            <option value="1.725">주에 5번</option>
+                            <option value="1.9">매일</option>
+                        </select>
+                        <button onclick="calculateCalories()">Calculate</button>
+
+                        <p id="result"></p>
+
+                    </div>
+                </div>
+                <br>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 offset-lg-0" style="padding-bottom: 100px;">
+                        <div class="칼로리" style="font-size: 1.2em; text-align: center;">
+                            <h2>섭취 칼로리 기록</h2>
+                            <form id="calorieForm">
+                                <label for="foodItem">음식명:</label>
+                                <input type="text" id="foodItem" placeholder="음식 이름 입력" required
+                                    oninput="updateCalories()">
+
+                                <label for="calories">칼로리 (kcal):</label>
+                                <input type="number" id="calories" placeholder="자동 입력" readonly>
+
+                                <button type="button" onclick="addCalorieEntry()">추가</button>
+                            </form>
+                            <h3>총 칼로리: <span id="totalCalories">0</span> kcal</h3>
+                            <ul id="calorieList"></ul>
+                            <button type="button" onclick="clearEntries()">기록 초기화</button>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <style>
+                /* CSS 스타일 작성 */
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: white;
+                }
+
+
+
+                .calculator,
+                .칼로리 {
+                    background-color: white;
+                    border-radius: 8px;
+                    padding: 20px;
+                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+                    margin-top: 20px;
+
+
+                }
+
+                button {
+                    background-color: red;
+                    color: white;
+                    border: none;
+                    padding: 5px 10px;
+                    cursor: pointer;
+                    font-size: 1em;
+                    border-radius: 5px;
+                }
+
+                button:hover {
+                    background-color: red;
+                }
+            </style>
+
+
+    </section>
+
+
+    <section class="section" id="trainers">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-heading dark-bg">
+                        <h2><em>Q&A</em> Board</h2>
+                        <img src="images/line-dec.png" alt="waves">
+                        <p>운동, 식단 등 다양한 트레이닝 관련 질문을 하면 그에 대한 답을 제공해주는 공간입니다.</p>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <br>
+    <div class="qna-board">
+        <div class="question-box ">
+            <textarea id="questionInput" rows="3" placeholder="질문을 해주세요."></textarea>
+            <button onclick="addQuestion()">Post Question</button>
+        </div>
+        <br>
+        <ul id="qnaList"></ul>
+        <button onclick="loginAsAdmin()">Login as Admin</button>
+        <br>
+        <div id="pagination"></div>
+    </div>
+    </div>
+
+    <script>
+        const qnaList = document.getElementById('qnaList');
+        const STORAGE_KEY = 'qnaBoardData';
+        const ITEMS_PER_PAGE = 10;
+        let currentPage = 1;
+
+        // 운영자 인증 상태 (임시: 실제 구현에서는 인증 시스템 사용 필요)
+        let isAdmin = false;
+
+        function loginAsAdmin() {
+            const password = prompt('운영자 패스워드를 입력하세요 :');
+            if (password === 'admin123') { // 간단한 비밀번호 인증
+                isAdmin = true;
+                alert('로그인 되었습니다.');
+                displayPage(JSON.parse(localStorage.getItem(STORAGE_KEY)) || [], currentPage);
+            } else {
+                alert('패스워드가 틀렸습니다.');
+            }
+        }
+
+        function loadQnA() {
+            const storedData = localStorage.getItem(STORAGE_KEY);
+            if (storedData) {
+                const qnaData = JSON.parse(storedData);
+                displayPage(qnaData, 1); // 첫 페이지 로드
+            }
+        }
+
+        function saveQnA(qnaData) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(qnaData));
+        }
+
+        function displayPage(qnaData, page) {
+            qnaList.innerHTML = '';
+            currentPage = page;
+
+            const startIndex = (page - 1) * ITEMS_PER_PAGE;
+            const endIndex = page * ITEMS_PER_PAGE;
+            const pageData = qnaData.slice(startIndex, endIndex);
+
+            pageData.forEach(({ question, answer }, index) => {
+                const globalIndex = startIndex + index; // 전체 리스트에서의 인덱스
+                addQnAItemToDOM(question, answer, globalIndex);
+            });
+
+            renderPagination(qnaData.length);
+        }
+
+        function renderPagination(totalItems) {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = i;
+                pageButton.className = i === currentPage ? 'active' : '';
+                pageButton.onclick = () => {
+                    const qnaData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                    displayPage(qnaData, i);
+                };
+                pagination.appendChild(pageButton);
+            }
+        }
+
+        function addQnAItem(questionText, answerText = '') {
+            const qnaData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            qnaData.push({ question: questionText, answer: answerText });
+            saveQnA(qnaData);
+            displayPage(qnaData, currentPage);
+        }
+
+        function addQnAItemToDOM(questionText, answerText = '', index) {
+            const qnaItem = document.createElement('li');
+            qnaItem.classList.add('qna-item');
+
+            const questionHeader = document.createElement('div');
+            questionHeader.classList.add('question-header');
+            questionHeader.textContent = questionText;
+            questionHeader.onclick = () => {
+                const answerSection = qnaItem.querySelector('.answer-section');
+                answerSection.style.display = answerSection.style.display === 'none' ? 'block' : 'none';
+            };
+
+            const answerSection = document.createElement('div');
+            answerSection.classList.add('answer-section');
+            answerSection.style.display = 'none';
+
+            const answerDiv = document.createElement('div');
+            answerDiv.classList.add('answer');
+
+            if (answerText) {
+                answerDiv.textContent = `A: ${answerText}`;
+            } else if (isAdmin) {
+                // 운영자일 때만 답변 작성 영역 보이기
+                const answerInput = document.createElement('textarea');
+                answerInput.rows = 2;
+                answerInput.placeholder = 'Write an answer...';
+                answerInput.style.width = '100%';
+                answerInput.style.marginTop = '10px';
+
+                const postAnswerButton = document.createElement('button');
+                postAnswerButton.textContent = 'Post Answer';
+                postAnswerButton.style.marginTop = '10px';
+                postAnswerButton.style.display = 'block';
+
+                postAnswerButton.onclick = () => {
+                    const answer = answerInput.value.trim();
+                    if (answer === '') {
+                        alert('대답을 적어주세요 !');
+                        return;
+                    }
+                    answerDiv.textContent = `A: ${answer}`;
+                    answerInput.remove();
+                    postAnswerButton.remove();
+                    const qnaData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                    qnaData[index].answer = answer;
+                    saveQnA(qnaData);
+                };
+
+                answerSection.appendChild(answerInput);
+                answerSection.appendChild(postAnswerButton);
+            }
+
+            answerSection.appendChild(answerDiv);
+
+            // 삭제 버튼 추가 (운영자만 표시)
+            if (isAdmin) {
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.style.marginTop = '10px';
+                deleteButton.style.marginLeft = '10px';
+                deleteButton.style.backgroundColor = '#ff0000';
+                deleteButton.style.color = 'white';
+                deleteButton.style.border = 'none';
+                deleteButton.style.borderRadius = '5px';
+                deleteButton.style.cursor = 'pointer';
+                deleteButton.onclick = () => {
+                    if (confirm('질문을 지우겠습니까?')) {
+                        deleteQnAItem(index);
+                    }
+                };
+                qnaItem.appendChild(deleteButton);
+            }
+
+            qnaItem.appendChild(questionHeader);
+            qnaItem.appendChild(answerSection);
+            qnaList.appendChild(qnaItem);
+        }
+
+        function deleteQnAItem(index) {
+            const qnaData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            qnaData.splice(index, 1); // 인덱스에 해당하는 질문 삭제
+            saveQnA(qnaData);
+
+            const newPage = Math.min(currentPage, Math.ceil(qnaData.length / ITEMS_PER_PAGE));
+            displayPage(qnaData, newPage);
+        }
+
+        function addQuestion() {
+            const questionInput = document.getElementById('questionInput');
+            const questionText = questionInput.value.trim();
+
+            if (questionText === '') {
+                alert('질문을 해주세요 !');
+                return;
+            }
+
+            addQnAItem(questionText);
+            questionInput.value = '';
+        }
+
+        window.onload = loadQnA;
+    </script>
+
+    <style>
+        .qna-board {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .question-box textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+
+        }
+
+        .question-box button {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        ul#qnaList {
+            list-style: none;
+            padding: 0;
+        }
+
+        .qna-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color: #ffffff;
+        }
+
+        .question-header {
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #f0f0f0;
+        }
+
+        .question-header:hover {
+            background-color: #e0e0e0;
+        }
+
+        .answer-section {
+            padding: 10px;
+            display: none;
+        }
+
+        .answer-section textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .answer-section button {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #pagination {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #pagination button {
+            margin: 5px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #f0f0f0;
+            color: #333;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #pagination button.active {
+            background-color: #ff0000;
+            color: white;
+        }
+
+        #pagination button:hover {
+            background-color: #b30000;
+            color: white;
+        }
+    </style>
+
+    </section>
+    <!-- ***** Testimonials Ends ***** -->
+    <!-- jQuery -->
+    <script src="js/jquery-2.1.0.min.js"></script> <!-- jQuery 라이브러리 로드 -->
+    <script src="js/scrollreveal.min.js"></script> <!-- 스크롤 시 애니메이션을 위한 플러그인 -->
+    <script src="js/accordions.js"></script> <!-- 아코디언 메뉴를 위한 스크립트 -->
+    <script src="js/custom.js"></script> <!-- 사용자 정의 스크립트 초기화 -->
+    <script src="calorie.js"></script>
+    <script src="filter.js"></script>
+
+</body>
+
+</html>
